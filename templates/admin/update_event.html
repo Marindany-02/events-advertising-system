@@ -1,0 +1,63 @@
+<!-- admin/update_event.html -->
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Update Event: {{ event.title }}</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-lg">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" class="mt-4">
+                        {% csrf_token %}
+
+                        <!-- First Column -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="title" class="form-label">Event Title</label>
+                                {{ form.title|add_class:"form-control" }}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="description" class="form-label">Event Description</label>
+                                {{ form.description|add_class:"form-control" }}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="event_type" class="form-label">Event Type</label>
+                                {{ form.event_type|add_class:"form-select" }}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="date" class="form-label">Event Date</label>
+                                {{ form.date|add_class:"form-control" }}
+                            </div>
+                        </div>
+
+                        <!-- Second Column -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="location" class="form-label">Event Location</label>
+                                {{ form.location|add_class:"form-control" }}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="ticket_link" class="form-label">Ticket Link (Optional)</label>
+                                {{ form.ticket_link|add_class:"form-control" }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="ticket_link" class="form-label">Event Image</label>
+                                {{ form.image|add_class:"form-control" }}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" class="btn btn-success w-100">Update Event</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us - EventHub{% endblock %}
+
+{% block content %}
+<section id="contact" class="contact section py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Form Section -->
+            <div class="col-lg-6 mb-4">
+                <div class="contact-form-container border p-4 rounded shadow-sm">
+                    <h2>Contact Us</h2>
+                    <p>We'd love to hear from you! Please fill out the form below, and we’ll get back to you as soon as possible.</p>
+
+                    <!-- Display success message if exists -->
+                    {% if messages %}
+                        <div class="alert alert-success" role="alert">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="col-lg-6 mb-4">
+                <div class="map-container border p-4 rounded shadow-sm">
+                    <h2>Our Location</h2>
+                    <p>Visit us or find us on the map below:</p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7977.66597565049!2d36.8239484404146!3d-1.273389944857965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17ed6ecd29e1%3A0x33409cf510de6303!2sPaward%20apartments!5e0!3m2!1sen!2ske!4v1732959115157!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

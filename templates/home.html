@@ -1,0 +1,70 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+
+{% block title %}EventHub - Home{% endblock %}
+
+{% block content %}
+<section id="hero" class="hero d-flex align-items-center">
+        <div class="container">
+            <p>Your one-stop platform for the best events.</p>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events section py-5">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'home' %}" class="mb-4">
+    <div class="input-group">
+        <input 
+            type="text" 
+            class="form-control" 
+            name="search" 
+            placeholder="Search events by title or location" 
+            value="{{ search_query }}"  <!-- Retain the input -->
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+        
+
+        <!-- Events Table -->
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Event Type</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Tickets Links</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ event.event_type }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.description|truncatewords:10 }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.location }}</td>
+                    <td><a href="{{ event.ticket_link }}" target="_blank">{{ event.ticket_link }}</a></td>
+                    <td>
+                        <a href="{% url 'event_detail' event.id %}" class="btn btn-info">View Details</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No events found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

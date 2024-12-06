@@ -1,0 +1,51 @@
+<!-- event_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}EventHub - Events{% endblock %}
+
+{% block content %}
+<section id="events" class="events section py-5">
+    <div class="container">
+        <h2>Upcoming Events</h2>
+
+        <!-- Event Type Filter Form -->
+        <form method="GET" action="{% url 'event_list' %}">
+            <select name="event_type" class="form-control mb-3">
+                <option value="">All Event Types</option>
+                <option value="Technology">Technology</option>
+                <option value="Education">Education</option>
+                <option value="Culture">Culture</option>
+                <option value="Sports">Sports</option>
+                <option value="Religious">Religious</option>
+                <option value="Other">Other</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+        <div class="row">
+            {% for event in events %}
+            <div class="col-lg-4 col-md-6">
+                <div class="event-card border p-3 mb-4">
+                    <h3>{{ event.name }}</h3>
+                    <p><strong>Type:</strong> {{ event.get_event_type_display }}</p>
+                    <p><strong>Date:</strong> {{ event.date }}</p>
+                    <p><strong>Location:</strong> {{ event.location }}</p>
+                    <p><strong>Price:</strong> ${{ event.price }}</p>
+                    <p><strong>Tickets Available:</strong> {{ event.tickets_available }}</p>
+
+                    {% if event.ticket_link %}
+                        <!-- Link to the external ticketing platform -->
+                        <a href="{{ event.ticket_link }}" target="_blank" class="btn btn-primary">Book Tickets</a>
+                    {% else %}
+                        <!-- Placeholder text if no ticket link is provided -->
+                        <span class="text-muted">Tickets not available yet</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p>No events available</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

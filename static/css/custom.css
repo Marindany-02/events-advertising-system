@@ -1,0 +1,79 @@
+/* General styles for navbar and logo */
+.navbar {
+    border-radius: 25px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+    width: 80%;
+    background-color: #ffffff; /* White background for header */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Logo container */
+.logo-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1001;
+}
+
+.logo-container img {
+    width: 100px; /* Adjust logo size for better visibility */
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff; /* Adds a clean white border */
+}
+
+/* Padding adjustments for main content */
+body {
+    padding-top: 80px; /* Adjust for navbar height */
+    background-color: #f4f4f9; /* Light background */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        top: 0;
+        transform: none;
+        width: 100%;
+        height: auto; /* Allow height to adjust dynamically */
+        padding: 10px; /* Reduce padding for smaller screens */
+        border-radius: 0; /* Remove rounded corners */
+    }
+
+    .logo-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: auto;
+        text-align: center;
+    }
+
+    .logo-container img {
+        width: 80px; /* Smaller logo for small screens */
+        height: 80px;
+    }
+
+    body {
+        padding-top: 120px; /* Ensure content stays below the adjusted header */
+    }
+}
+
+/* Responsive adjustments for ultra-small screens */
+@media (max-width: 576px) {
+    .logo-container img {
+        width: 60px; /* Further reduce logo size */
+        height: 60px;
+    }
+
+    body {
+        padding-top: 140px; /* Ensure content clears both logo and navbar */
+    }
+}

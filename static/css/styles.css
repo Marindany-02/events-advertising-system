@@ -1,0 +1,22 @@
+/* Ensures event images have a fixed, reasonable size */
+.event-image {
+    max-width: 100%;      /* Ensures image doesn't overflow the container */
+    height: auto;         /* Maintains aspect ratio */
+    max-height: 400px;    /* Sets a maximum height for the image */
+    object-fit: cover;    /* Ensures the image is scaled appropriately */
+    border-radius: 10px;  /* Adds rounded corners for a polished look */
+    margin-top: 20px;     /* Adds some spacing above the image */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .event-image {
+        max-height: 300px; /* Reduces max height on smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .event-image {
+        max-height: 200px; /* Further reduces max height for very small screens */
+    }
+}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+<!-- Your content here -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+<section id="event-detail" class="event-detail py-5">
+    <div class="container">
+        <h1>{{ event.title }}</h1>
+        <p>{{ event.description }}</p>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid event-image">
+    </div>
+</section>
+
+{% endblock %}
